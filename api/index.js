@@ -20,7 +20,7 @@ const app = express();
 // to make input as JSON
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: ["http://localhost:5173"], credentials: true }));
+app.use(cors({ origin: ["https://client-note-app.vercel.app/"], credentials: true }));
 
 // Default route
 app.get("/", (req, res) => {
