@@ -6,6 +6,7 @@ import cors from "cors";
 
 dotenv.config();
 
+// Connect to MongoDB
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
@@ -17,28 +18,29 @@ mongoose
 
 const app = express();
 
-// to make input as JSON
+// Middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: ["https://client-note-app.vercel.app/"], credentials: true }));
+
+// CORS setup
+app.use(cors({ 
+  origin: "https://client-note-app.vercel.app", // Remove the trailing slash
+  credentials: true 
+}));
 
 // Default route
 app.get("/", (req, res) => {
   res.send("Welcome to the Note App Backend!"); // This message will appear on visiting the root path
 });
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
-});
-
-// import routes
+// Import routes
 import authRouter from "./routes/auth.route.js";
 import noteRouter from "./routes/note.route.js";
 
 app.use("/api/auth", authRouter);
 app.use("/api/note", noteRouter);
 
-// error handling
+// Error handling
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || "Internal Server Error";
@@ -48,4 +50,10 @@ app.use((err, req, res, next) => {
     statusCode,
     message,
   });
+});
+
+// Start server
+const PORT = process.env.PORT || 3000; // Use environment variable for port
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
