@@ -36,7 +36,7 @@ const Signup = () => {
     // Sign up API
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/auth/signup",
+        "https://api-note-app.vercel.app/api/auth/signup",
         { username: name, email, password },
         { withCredentials: true }
       );
