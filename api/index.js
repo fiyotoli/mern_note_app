@@ -24,7 +24,7 @@ app.use(cookieParser());
 
 // CORS setup
 app.use(cors({ 
-  origin: "https://client-note-app.vercel.app", // Remove the trailing slash
+  origin: "https://client1-note-app.vercel.app", // Remove the trailing slash
   credentials: true 
 }));
 
