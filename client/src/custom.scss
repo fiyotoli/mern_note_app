@@ -1,0 +1,11 @@
+// Import Bootstrap functions first
+@import "node_modules/bootstrap/scss/functions";
+
+// Override Bootstrap's default colors
+$primary: #118a39;
+
+$success: #dc3545;
+
+
+// Import the rest of Bootstrap
+@import "node_modules/bootstrap/scss/bootstrap";
